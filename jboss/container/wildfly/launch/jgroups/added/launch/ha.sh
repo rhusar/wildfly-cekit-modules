@@ -292,7 +292,7 @@ configure_ha_args() {
 
   init_node_name
 
-  JBOSS_HA_ARGS="${JBOSS_HA_ARGS} -Djboss.node.name=${JBOSS_NODE_NAME}"
+  JBOSS_HA_ARGS="${JBOSS_HA_ARGS} -Djboss.node.name=${JBOSS_NODE_NAME} -Djboss.tx.node.id=${JBOSS_TX_NODE_ID}"
 }
 
 configure_ha() {
@@ -331,6 +331,6 @@ configure_ha() {
   if [ "${CONF_PING_MODE}" = "xml" ]; then
     sed -i "s|<!-- ##JGROUPS_PING_PROTOCOL## -->|${ping_protocol_element}|g" $CONFIG_FILE
   elif [ "${CONF_PING_MODE}" = "cli" ]; then
-    echo "${ping_protocol_element}" >> ${CLI_SCRIPT_FILE};
+    echo "${ping_protocol_element}" >> "${CLI_SCRIPT_FILE}";
   fi
 }
